@@ -1,0 +1,57 @@
+container-element {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  & square-element {
+    width: 150px;
+    height: 150px;
+    background-color: aqua;
+    display: block;
+    position: relative;
+
+    & .hatch {
+      position: absolute;
+      inset: 50%;
+      background: brown;
+      border-radius: 50%;
+
+      & img {
+        display: none;
+      }
+    }
+
+    & .animate {
+      animation: open-and-close 4s;
+
+      & img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+}
+
+@keyframes open-and-close {
+  0% {
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+  }
+
+  50% {
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+  }
+
+  100% {
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+  }
+}
