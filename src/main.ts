@@ -11,3 +11,4 @@ squaresArray.forEach((elem: HTMLElement): void => gridContainer.append(elem));
 document.querySelector<HTMLDivElement>('#app')!.append(gridContainer);
 
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+console.log("I'm here");
