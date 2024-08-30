@@ -35,7 +35,7 @@ export default class Container extends HTMLElement {
         counter += 1;
         console.log(counter);
       }
-    }, 4000);
+    }, 6000);
   }
 }
 

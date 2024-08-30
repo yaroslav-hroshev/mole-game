@@ -1,3 +1,7 @@
+html, body { 
+  cursor: none;
+}
+
 container-element {
   width: 100%;
   display: grid;
@@ -14,7 +18,7 @@ container-element {
     & .hatch {
       position: absolute;
       inset: 50%;
-      background: brown;
+      background: darkgreen !important;
       border-radius: 50%;
 
       & img {
@@ -23,11 +27,19 @@ container-element {
     }
 
     & .animate {
-      animation: open-and-close 4s;
+      animation: open-and-close 6s;
 
       & img {
+        display: block;
         width: 70px;
         height: 70px;
+        position: absolute;
+        z-index: -1;
+        animation: show-and-hide 6s infinite;
+        left: 50%;
+        bottom: -70px;
+        transform: translateX(-50%);
+        opacity: 0;
       }
     }
   }
@@ -54,4 +66,60 @@ container-element {
     left: 50%;
     right: 50%;
   }
+}
+
+@keyframes show-and-hide {
+
+  0%,
+  100% {
+    opacity: 0;
+    bottom: -70;
+    z-index: -1;
+  }
+
+  50% {
+    bottom: 70px;
+  }
+
+  70% {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  90% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.custom-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+
+.site-wide {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 1);
+}
+
+.site-wide .pointer {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
+}
+
+.site-wide.active .pointer {
+  width: 20px;
+  height: 20px;
 }
