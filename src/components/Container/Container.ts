@@ -20,7 +20,7 @@ export default class Container extends HTMLElement {
 
     let timerId = setTimeout(function tick(): void {
       const randomElementIndex: number = Math.trunc((Math.random() * 100) / 6.2);
-      const animateDivElement: HTMLElement | null = children[randomElementIndex].querySelector('div');
+      const animateDivElement: HTMLElement | null = children[randomElementIndex].querySelector('.square');
       const prevAnimateDivElement: HTMLElement | null = document.body.querySelector('.animate');
       if (prevAnimateDivElement !== null) {
         prevAnimateDivElement.classList.remove('animate');

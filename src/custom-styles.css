@@ -16,11 +16,37 @@ container-element {
     display: block;
     position: relative;
 
-    & .hatch {
+    & .square {
       position: absolute;
-      inset: 50%;
-      background: darkgreen !important;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
       border-radius: 50%;
+      background: transparent;
+      z-index: 1;
+
+      & .hatch {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: darkgreen;
+      }
+
+      & .hatch:first-of-type {
+        top: 0;
+        border-top-left-radius: 80px;
+        border-top-right-radius: 80px;
+        z-index: 0;
+      }
+
+      & .hatch:last-of-type {
+        bottom: 0;
+        border-bottom-left-radius: 80px;
+        border-bottom-right-radius: 80px;
+        z-index: 2;
+      }
 
       & img {
         display: none;
@@ -28,69 +54,102 @@ container-element {
     }
 
     & .animate {
-      animation: open-and-close 6s;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      & .hatch:first-of-type {
+        animation: open-and-close-top 6s;
+      }
+
+      & .hatch:last-of-type {
+        animation: open-and-close-bottom 6s;
+      }
 
       & img {
         display: block;
         width: 70px;
         height: 70px;
         position: absolute;
-        z-index: -1;
-        animation: show-and-hide 6s infinite;
+        animation: show-and-hide 3s;
+        animation-delay: 1.5s;
         left: 50%;
-        bottom: -70px;
+        bottom: 0;
         transform: translateX(-50%);
+        z-index: 1;
         opacity: 0;
+        overflow: hidden;
       }
     }
+
   }
 }
 
-@keyframes open-and-close {
+@keyframes open-and-close-bottom {
   0% {
-    top: 50%;
     bottom: 50%;
     left: 50%;
     right: 50%;
+    width: 0;
+    height: 0;
   }
 
   50% {
-    top: 0%;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50%;
+  }
+
+  100% {
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes open-and-close-top {
+  0% {
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    width: 0;
+    height: 0;
+  }
+
+  50% {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50%;
   }
 
   100% {
     top: 50%;
-    bottom: 50%;
     left: 50%;
     right: 50%;
+    width: 0;
+    height: 0;
   }
 }
 
 @keyframes show-and-hide {
-
-  0%,
-  100% {
+  0%, 100%{
+    bottom: 0;
     opacity: 0;
-    bottom: -70;
-    z-index: -1;
+    visibility: hidden;
   }
 
   50% {
     bottom: 70px;
-  }
-
-  70% {
     opacity: 1;
-    z-index: 1;
+    visibility: visible;
   }
-
-  90% {
-    opacity: 0;
-    z-index: -1;
-  }
+  
 }
 
 .custom-cursor {

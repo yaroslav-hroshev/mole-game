@@ -11,12 +11,16 @@ export default class Square extends HTMLElement {
   }
 
   createHTML(): HTMLDivElement {
-    const hatch: HTMLDivElement = document.createElement('div');
-    hatch.classList.add('hatch');
+    const square: HTMLDivElement = document.createElement('div');
+    square.classList.add('square');
+    const firstHatch: HTMLDivElement = document.createElement('div');
+    const secondHatch: HTMLDivElement = document.createElement('div');
+    firstHatch.classList.add('hatch');
+    secondHatch.classList.add('hatch');
     const mole: HTMLImageElement = document.createElement('img');
     mole.setAttribute('src', '/public/mole.svg');
-    hatch.append(mole);
-    return hatch;
+    square.append(secondHatch, firstHatch, mole);
+    return square;
   }
 
   render() {}
