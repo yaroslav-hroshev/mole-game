@@ -22,11 +22,15 @@ export const getTransformValues = (element: HTMLElement): TransformValues | null
   return null;
 };
 
-export const setTransformValue = (element: HTMLElement, lsVariable: string, rotateDeg: number): void => {
+export const setTransformValue = (element: HTMLElement, lsVariable: string, rotateDeg: number = 0): void => {
   const transformValues: TransformValues | null = getTransformValues(element);
   if (transformValues !== null && transformValues) {
-    const { translateX, translateY } = transformValues;
+    const { translateX, translateY, rotation } = transformValues;
+    console.log("Rotating before: ", rotation);
     element.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-${rotateDeg}deg)`;
+    transformValues.rotation = rotateDeg;
     window.localStorage.setItem(`${lsVariable}`, JSON.stringify(transformValues));
+    // const transformValues2: TransformValues | null = getTransformValues(element);
+    // console.log("Rotating after transform: ", transformValues2);
   }
 };

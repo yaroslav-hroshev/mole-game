@@ -1,5 +1,5 @@
 import { LS_TRANSFORM } from '../constants/constants';
-import { getTransformValues, TransformValues, setTransformValue } from './cursorHelper';
+import { TransformValues, setTransformValue } from './cursorHelper';
 
 // site wide cursor
 const siteWideCursor: HTMLDivElement | null = document.querySelector('.site-wide.custom-cursor');
@@ -26,7 +26,7 @@ document.addEventListener('mousedown', (): void => {
 
 document.addEventListener('mouseup', (): void => {
   if (siteWideCursor && siteWideCursor.querySelector('.background-image')) {
-    setTransformValue(siteWideCursor, LS_TRANSFORM, 0);
+    setTransformValue(siteWideCursor, LS_TRANSFORM);
   } else if (siteWideCursor) {
     siteWideCursor.classList.remove('active');
   }
@@ -43,16 +43,13 @@ function TrackCursorMouse(event: MouseEvent): void {
     const valuesFromLS: TransformValues | null = window.localStorage.getItem(LS_TRANSFORM)
       ? (JSON.parse(window.localStorage.getItem(LS_TRANSFORM) as string) as TransformValues)
       : null;
-    console.log(valuesFromLS);
     let transform;
     if (valuesFromLS) {
-      transform = `translate(${clientX - x / 2}px, ${clientY - y / 2}px) rotate(${valuesFromLS.rotation}deg)`;
+      transform = `translate(${clientX - x / 2}px, ${clientY - y / 2}px) rotate(-${valuesFromLS?.rotation}deg)`;
     } else {
       transform = `translate(${clientX - x / 2}px, ${clientY - y / 2}px) rotate(0deg)`;
     }
     siteWideCursor.style.transform = transform;
-    // const transformValues: TransformValues | null = getTransformValues(siteWideCursor);
-    // window.localStorage.setItem(`${LS_TRANSFORM}`, JSON.stringify(transformValues));
     if (
       event.target !== null &&
       event.target instanceof Element &&
