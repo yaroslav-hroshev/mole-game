@@ -5,7 +5,10 @@ export default class Container extends HTMLElement {
 
   connectedCallback() {
     this.addEventListener('click', (event: any) => {
-      console.log(event.currentTarget);
+      console.log(event.target);
+      if (event.target.getAttribute('data-mole')) {
+        
+      }
     });
     this.changeColors();
   }
@@ -30,12 +33,19 @@ export default class Container extends HTMLElement {
         animateDivElement.classList.add('animate');
       }
 
+      // Reset counter and timer after all elements have been animated
       if (counter < children.length) {
         timerId = setTimeout(tick, 4000);
         counter += 1;
-        console.log(counter);
+      } else {
+        clearTimeout(timerId);
+        counter = 0;
+        console.log('All elements have been animated');
+        if ( animateDivElement !== null) {
+          animateDivElement.classList.remove('animate');
+        }
       }
-    }, 6000);
+    }, 4000);
   }
 }
 

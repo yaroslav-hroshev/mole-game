@@ -26,7 +26,6 @@ export const setTransformValue = (element: HTMLElement, lsVariable: string, rota
   const transformValues: TransformValues | null = getTransformValues(element);
   if (transformValues !== null && transformValues) {
     const { translateX, translateY, rotation } = transformValues;
-    console.log("Rotating before: ", rotation);
     element.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-${rotateDeg}deg)`;
     transformValues.rotation = rotateDeg;
     window.localStorage.setItem(`${lsVariable}`, JSON.stringify(transformValues));

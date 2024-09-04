@@ -6,13 +6,15 @@ body {
 container-element {
   width: 100%;
   display: grid;
+  background-color: lightgreen;
+  background-image: url('/public/grass.jpg');
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  gap: 20px;
 
   & square-element {
     width: 150px;
     height: 150px;
-    background-color: aqua;
     display: block;
     position: relative;
 
@@ -31,7 +33,7 @@ container-element {
         left: 0;
         width: 100%;
         height: 50%;
-        background: darkgreen;
+        background: #8B4513;
       }
 
       & .hatch:first-of-type {

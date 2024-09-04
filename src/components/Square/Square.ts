@@ -19,6 +19,7 @@ export default class Square extends HTMLElement {
     secondHatch.classList.add('hatch');
     const mole: HTMLImageElement = document.createElement('img');
     mole.setAttribute('src', '/public/mole.svg');
+    mole.setAttribute('data-mole', 'mole');
     square.append(secondHatch, firstHatch, mole);
     return square;
   }
