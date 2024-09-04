@@ -30,7 +30,5 @@ export const setTransformValue = (element: HTMLElement, lsVariable: string, rota
     element.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-${rotateDeg}deg)`;
     transformValues.rotation = rotateDeg;
     window.localStorage.setItem(`${lsVariable}`, JSON.stringify(transformValues));
-    // const transformValues2: TransformValues | null = getTransformValues(element);
-    // console.log("Rotating after transform: ", transformValues2);
   }
 };
